@@ -60,8 +60,6 @@ builder.Services.AddOpenAIService(settings =>
     settings.ApiKey = apiKey;
 });
 #endregion
-
-
 #region 💾 Database ve Servisler
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IDestinationService, DestinationService>();
