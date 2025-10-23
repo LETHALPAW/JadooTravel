@@ -1,0 +1,89 @@
+﻿@model CreateUserDto
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kayıt Ol | JadooTravel</title>
+    <link rel="shortcut icon" type="image/png" href="/Admin/assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="/Admin/assets/css/styles.min.css" />
+</head>
+
+<body>
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6"
+         data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+
+        <div class="position-relative overflow-hidden text-bg-light min-vh-100 d-flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center w-100">
+                <div class="row justify-content-center w-100">
+                    <div class="col-md-8 col-lg-6 col-xxl-3">
+                        <div class="card mb-0 shadow-sm">
+                            <div class="card-body">
+                                <a href="/Default/Index" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                                    <img src="~/Admin/assets/images/logos/logo.svg" alt="logo">
+                                </a>
+                                <p class="text-center text-muted mb-4">Yeni hesap oluştur</p>
+
+                                <!-- FORM -->
+                                <form asp-action="CreateUser" asp-controller="User" method="post">
+                                    <div class="mb-3">
+                                        <label asp-for="FirstName" class="form-label">Ad</label>
+                                        <input asp-for="FirstName" class="form-control" placeholder="Adınızı girin" />
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label asp-for="LastName" class="form-label">Soyad</label>
+                                        <input asp-for="LastName" class="form-control" placeholder="Soyadınızı girin" />
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label asp-for="UserName" class="form-label">Kullanıcı Adı</label>
+                                        <input asp-for="UserName" class="form-control" placeholder="Kullanıcı adınızı girin" />
+                                        <span asp-validation-for="UserName" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label asp-for="Password" class="form-label">Şifre</label>
+                                        <input asp-for="Password" class="form-control" type="password" placeholder="Şifrenizi girin" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label asp-for="ImageUrl" class="form-label">Profil Fotoğrafı (opsiyonel)</label>
+                                        <input asp-for="ImageUrl" class="form-control" placeholder="Resim URL'si girin (opsiyonel)" />
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4">Kayıt Ol</button>
+
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="fs-5 mb-0 fw-bold">Zaten hesabın var mı?</p>
+                                        <a class="text-primary fw-bold ms-2" href="/User/Login">Giriş Yap</a>
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <a href="/Default/Index" class="text-secondary fw-semibold">
+                                            ← Geri Dön
+                                        </a>
+                                    </div>
+                                </form>
+                                <!-- END FORM -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Admin/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/Admin/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+</body>
+</html>

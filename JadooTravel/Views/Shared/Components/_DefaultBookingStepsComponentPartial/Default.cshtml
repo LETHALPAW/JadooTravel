@@ -1,0 +1,86 @@
+﻿@model TripPlanReservationViewModel
+@* _DefaultBookingStepsComponentPartial *@
+
+@inject JadooTravel.Services.LanguageService.LanguageService LanguageService
+@using Microsoft.AspNetCore.Http
+
+@{
+
+    var currentLang = Context.Session.GetString("lang") ?? "tr";
+    var currentLangUpper = currentLang.ToUpper();
+
+    var Title = await LanguageService.TranslateAsync("Hızlı Rezervasyon : ", currentLang);
+    var SubTitle = await LanguageService.TranslateAsync("Hayalindeki Turu Planla", currentLang);
+
+    var name = await LanguageService.TranslateAsync("Adınız Soyadınız", currentLang);
+    var telefon = await LanguageService.TranslateAsync("Telefon Numaranı", currentLang);
+    var mail = await LanguageService.TranslateAsync("E-Posta Adresiniz", currentLang);
+    var mesaj = await LanguageService.TranslateAsync("Mesajınız", currentLang);
+    var buton = await LanguageService.TranslateAsync("Gönder", currentLang);
+    var text = await LanguageService.TranslateAsync("Rezervasyon İçin Bize Ulaşın", currentLang);
+
+
+
+
+}
+<section id="booking">
+    <div class="container">
+        <div class="row align-items-start">
+
+            <!-- Sol Taraf: Adımlar -->
+            <div class="col-lg-6">
+                <div class="mb-4 text-start">
+                    <h5 class="text-secondary">@Title</h5>
+                    <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">
+                        @SubTitle
+                    </h3>
+                </div>
+
+                @foreach (var item in Model.TripPlans)
+                {
+                    <div class="d-flex align-items-start mb-5">
+                        <div class="bg-primary me-sm-4 me-3 p-3" style="border-radius: 13px">
+                            <img src="@item.ImageUrl" width="50" height="50" alt="steps" style="object-fit:contain;" />
+                        </div>
+                        <div class="flex-1">
+                            <h5 class="text-secondary fw-bold fs-0">@item.Title</h5>
+                            <p>@item.Description</p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Sağ Taraf: Form -->
+            <div class="col-lg-6 d-flex flex-column align-items-center justify-content-center">
+                <h3 class="fw-bold text-secondary mb-4 text-center">@text</h3>
+
+                <form asp-action="CreateReservation" asp-controller="Reservation" method="post" class="w-100" style="max-width: 400px;">
+                    <input asp-for="Reservation.FullName" class="form-control mb-3" placeholder="@name" />
+                    <input asp-for="Reservation.PhoneNumber" class="form-control mb-3" placeholder="@telefon" />
+                    <input asp-for="Reservation.Email" class="form-control mb-3" placeholder="@mail" />
+                    <textarea asp-for="Reservation.ReservationMessage" class="form-control mb-3" placeholder="@mesaj..." rows="3"></textarea>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-info">@buton</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<script>
+
+    $(document).ready(function () {
+        var message = '@TempData["ReservationSuccess"]';
+        if (message) {
+            toastr.success(message, "Başarılı 🎉", {
+                closeButton: true,
+                progressBar: true,
+                positionClass: "toast-top-right",
+                timeOut: 4000
+            });
+        }
+    });
+</script>

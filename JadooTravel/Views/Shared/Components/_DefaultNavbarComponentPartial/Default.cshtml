@@ -1,0 +1,97 @@
+﻿@*
+    _DefaultNavbarComponentPartial
+*@
+
+@inject JadooTravel.Services.LanguageService.LanguageService LanguageService
+@using Microsoft.AspNetCore.Http
+
+@{
+
+    var currentLang = Context.Session.GetString("lang") ?? "tr";
+    var currentLangUpper = currentLang.ToUpper();
+
+    var services = await LanguageService.TranslateAsync("Hizmetler", currentLang);
+    var routes = await LanguageService.TranslateAsync("Rota", currentLang);
+    var reservation = await LanguageService.TranslateAsync("Rezervasyon", currentLang);
+    var contact = await LanguageService.TranslateAsync("İletişim", currentLang);
+    var login = await LanguageService.TranslateAsync("Giriş Yap", currentLang);
+    var register = await LanguageService.TranslateAsync("Kayıt Ol", currentLang);
+
+   
+}
+
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-5 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+    <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand" href="/Default/Index">
+            <img src="/public/assets/img/logo.svg" height="34" alt="logo" />
+        </a>
+
+        <!-- Mobil Menü Butonu -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menü -->
+        <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base align-items-lg-center align-items-start">
+
+                <!-- Menü Linkleri -->
+                <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" href="#service">@services</a></li>
+                <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" href="#destination">@routes</a></li>
+                <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" href="#booking">@reservation</a></li>
+                <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" href="#testimonial">@contact</a></li>
+
+                <!-- Giriş ve Kayıt -->
+                <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" href="/User/Login">@login</a></li>
+                <li class="nav-item px-3 px-xl-4">
+                    <a class="btn btn-outline-dark order-1 order-lg-0 fw-medium" href="/User/CreateUser">@register</a>
+                </li>
+
+                <!-- 🌍 Dil Seçimi Dropdown -->
+                <li class="nav-item dropdown px-3 px-lg-0">
+                    <a class="d-inline-block ps-0 py-2 pe-3 text-decoration-none dropdown-toggle fw-medium"
+                       href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        @currentLangUpper
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" style="border-radius:0.3rem;"
+                        aria-labelledby="navbarDropdown">
+
+                        @foreach (var lang in new[] { "tr", "en", "fr", "es" })
+                        {
+                            <li>
+                                <form asp-controller="Language" asp-action="ChangeLanguage" method="post" class="m-0 p-0">
+                                    
+                                    @Html.AntiForgeryToken()
+
+                                    <button type="submit" name="lang" value="@lang"
+                                            class="dropdown-item @(currentLang == lang ? "active fw-bold" : "")">
+                                        @if (lang == "tr")
+                                        {
+                                            <text>🇹🇷 Türkçe</text>
+                                        }
+                                        else if (lang == "en")
+                                        {
+                                            <text>🇬🇧 English</text>
+                                        }
+                                        else if (lang == "fr")
+                                        {
+                                            <text>🇫🇷 Français</text>
+                                        }
+                                        else if (lang == "es")
+                                        {
+                                            <text>🇪🇸 Español</text>
+                                        }
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

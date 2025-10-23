@@ -1,0 +1,60 @@
+﻿@model GetUserByIdDto
+@{
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="row g-0">
+        <!-- Sol taraf: Profil Resmi -->
+        <div class="col-md-4 d-flex align-items-center justify-content-center p-3 bg-light">
+            <img id="previewImg"
+                 src="@Model.ImageUrl"
+                 alt="@Model.UserName"
+                 class="img-fluid rounded-circle shadow-sm"
+                 style="width: 200px; height: 200px; object-fit: cover;" />
+        </div>
+
+        <!-- Sağ taraf: Form -->
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-3">Kullanıcı Bilgilerini Güncelle</h5>
+
+                <form asp-action="UpdateUser" asp-controller="User" method="post">
+                    <input type="hidden" asp-for="UserId" />
+
+                    <div class="mb-3">
+                        <label asp-for="FirstName" class="form-label">Ad</label>
+                        <input type="text" asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="LastName" class="form-label">Soyad</label>
+                        <input type="text" asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="UserName" class="form-label">Kullanıcı Adı</label>
+                        <input type="text" asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ImageUrl" class="form-label">Profil Resmi URL</label>
+                        <input type="text" asp-for="ImageUrl" class="form-control"
+                               oninput="document.getElementById('previewImg').src = this.value" />
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Bilgileri Güncelle</button>
+                        <a asp-action="Index" asp-controller="User" class="btn btn-secondary">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

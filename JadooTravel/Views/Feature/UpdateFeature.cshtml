@@ -1,0 +1,53 @@
+﻿@model GetFeatureByIdDto
+@{
+    ViewData["Title"] = "UpdateFeature";
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">Öne Çıkan Alanı Düzenle</h5>
+
+        <form method="post">
+            <input type="hidden" asp-for="FeatureId" />
+
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label">Başlık</label>
+                <input type="text" asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="MainTitle" class="form-label">Ana Başlık</label>
+                <input type="text" asp-for="MainTitle" class="form-control" />
+                <span asp-validation-for="MainTitle" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Açıklama</label>
+                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="VideoUrl" class="form-label">Video URL</label>
+                <input type="text" asp-for="VideoUrl" class="form-control" />
+                <span asp-validation-for="VideoUrl" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ImageUrl" class="form-label">Resim URL</label>
+                <input type="text" asp-for="ImageUrl" class="form-control"
+                       oninput="document.getElementById('previewImg').src = this.value" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <img id="previewImg" src="@Model.ImageUrl" class="img-thumbnail" style="max-height:200px;" />
+            </div>
+
+            <button type="submit" class="btn btn-success">Kaydet</button>
+            <a asp-action="Index" asp-controller="Feature" class="btn btn-danger">İptal</a>
+        </form>
+    </div>
+</div>

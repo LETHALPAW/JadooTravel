@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+@await Component.InvokeAsync("_AdminHeadViewComponentPartial")
+
+
+<body>
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical"
+         data-navbarbg="skin6" data-sidebartype="full"
+         data-sidebar-position="fixed" data-header-position="fixed">
+
+        <!--  App Topstrip -->
+        @await Component.InvokeAsync("_AdminTopStripViewComponentPartial")
+
+        <!-- Sidebar Start -->
+        @await Component.InvokeAsync("_AdminSideBarViewComponentPartial")
+        <!-- Sidebar End -->
+        <!--  Main wrapper -->
+
+        <div class="body-wrapper">
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    @await Component.InvokeAsync("_AdminScriptsViewComponentPartial")
+</body>
+
+
+</html>
+
+@if (TempData["ReservationSuccess"] != null)
+{
+    <script>
+        toastr.success('@TempData["ReservationSuccess"]', 'Başarılı', {
+            closeButton: true,
+            progressBar: true,
+            timeOut: 3000
+        });
+    </script>
+}

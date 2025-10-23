@@ -1,0 +1,56 @@
+﻿@model GetPartnerByIdDto
+@{
+    ViewData["Title"] = "UpdatePartner";
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="row g-0">
+        <!-- Sol taraf: Logo Önizleme -->
+        <div class="col-md-4 d-flex align-items-center justify-content-center p-3">
+            <img id="previewLogo"
+                 src="@Model.LogoUrl"
+                 alt="@Model.PartnerName"
+                 class="img-fluid rounded"
+                 style="max-height:250px; object-fit:contain;" />
+        </div>
+
+        <!-- Sağ taraf: Form -->
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-3">Partner Güncelle</h5>
+
+                <form asp-action="UpdatePartner" asp-controller="Partner" method="post">
+                    <!-- Gizli PartnerId -->
+                    <input type="hidden" asp-for="PartnerId" />
+
+                    <!-- Partner Adı -->
+                    <div class="mb-3">
+                        <label asp-for="PartnerName" class="form-label">Partner Adı</label>
+                        <input type="text" asp-for="PartnerName" class="form-control" />
+                        <span asp-validation-for="PartnerName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Logo URL -->
+                    <div class="mb-3">
+                        <label asp-for="LogoUrl" class="form-label">Logo URL</label>
+                        <input type="text" asp-for="LogoUrl" class="form-control"
+                               oninput="document.getElementById('previewLogo').src = this.value" />
+                        <span asp-validation-for="LogoUrl" class="text-danger"></span>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="form-check mb-3">
+                        <input type="checkbox" asp-for="Status" class="form-check-input" id="statusCheck" />
+                        <label class="form-check-label" for="statusCheck">Aktif mi?</label>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+
+                    <!-- Buttons -->
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                    <a asp-action="PartnerList" asp-controller="Partner" class="btn btn-secondary">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model GetCategoryByIdDto
+@{
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Kizmet Kategori Güncelleme Formu</h5>
+
+                <form method="post">
+                    <!-- Id (hidden) -->
+                    <input type="hidden" asp-for="CategoryId" />
+
+                    <!-- CategoryName -->
+                    <div class="mb-3">
+                        <label asp-for="CategoryName" class="form-label">Kategori Adı</label>
+                        <input type="text" asp-for="CategoryName" class="form-control" placeholder="Hizmet adını giriniz" />
+                        <span asp-validation-for="CategoryName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Açıklama</label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Hizmet açıklamasını giriniz"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <!-- IconUrl -->
+                    <div class="mb-3">
+                        <label asp-for="IconUrl" class="form-label">İkon URL</label>
+                        <input type="text" asp-for="IconUrl" class="form-control" placeholder="Örn: /images/icons/category.png" />
+                        <span asp-validation-for="IconUrl" class="text-danger"></span>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="form-check mb-3">
+                        <input type="checkbox" asp-for="Status" class="form-check-input" id="statusCheck" />
+                        <label class="form-check-label" for="statusCheck">Aktif mi?</label>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-primary">Kategoriyi Güncelle</button>
+                    <a asp-action="CategoryList" asp-controller="Category" class="btn btn-danger">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

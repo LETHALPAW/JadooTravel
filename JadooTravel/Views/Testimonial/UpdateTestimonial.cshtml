@@ -1,0 +1,58 @@
+﻿@model GetTestimonialByIdDto
+@{
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="row g-0">
+        <!-- Sol taraf: Resim -->
+        <div class="col-md-4 d-flex align-items-center justify-content-center p-3">
+            <img id="previewImg"
+                 src="@Model.ImageURL"
+                 alt="@Model.FullName"
+                 class="img-fluid rounded"
+                 style="max-height:250px; object-fit:cover;" />
+        </div>
+
+        <!-- Sağ taraf: Form -->
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-3">Testimonial Güncelle</h5>
+
+                <form asp-action="UpdateTestimonial" asp-controller="Testimonial" method="post">
+                    <input type="hidden" asp-for="TestimonialId" />
+
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label">Ad Soyad</label>
+                        <input type="text" asp-for="FullName" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Comment" class="form-label">Yorum</label>
+                        <textarea asp-for="Comment" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ImageURL" class="form-label">Resim URL</label>
+                        <input type="text" asp-for="ImageURL" class="form-control"
+                               oninput="document.getElementById('previewImg').src = this.value" />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="City" class="form-label">Şehir</label>
+                            <input type="text" asp-for="City" class="form-control" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Country" class="form-label">Ülke</label>
+                            <input type="text" asp-for="Country" class="form-control" />
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                    <a asp-action="TestimonialList" class="btn btn-secondary">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

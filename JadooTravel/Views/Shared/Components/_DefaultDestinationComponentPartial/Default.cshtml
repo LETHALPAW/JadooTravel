@@ -1,0 +1,156 @@
+﻿@model List<ResultDestinationDto>
+@inject JadooTravel.Services.LanguageService.LanguageService LanguageService
+@using Microsoft.AspNetCore.Http
+
+@{
+    var lang = Context.Session.GetString("lang") ?? "tr";
+    var SectionTitle = await LanguageService.TranslateAsync("Tur Rotaları", lang);
+    var Subtitle = await LanguageService.TranslateAsync("En Sevilen Tur Rotalarımız", lang);
+    var ModalTitle = await LanguageService.TranslateAsync("Tur Detayı", lang);
+    var ButtonText = await LanguageService.TranslateAsync("Kapat", lang);
+    var CapacityText = await LanguageService.TranslateAsync("Kişi", lang);
+    var isActive = await LanguageService.TranslateAsync("Aktif", lang);
+    var notActive = await LanguageService.TranslateAsync("Bu Tur Aktif Değil", lang);
+}
+
+<style>
+    .inactive-img {
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .inactive-img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+</style>
+
+<section class="pt-5" id="destination">
+    <div class="container">
+        <div class="position-absolute start-100 bottom-0 translate-middle-x d-none d-xl-block ms-xl-n4">
+            <img src="/public/assets/img/dest/shape.svg" alt="destination" />
+        </div>
+
+        <!-- Başlıklar -->
+        <div class="mb-7 text-center">
+            <h5 class="text-secondary">@SectionTitle</h5>
+            <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">@Subtitle</h3>
+        </div>
+
+        <!-- Kartlar -->
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card overflow-hidden shadow"
+                         onclick="console.log('Kart tıklandı'); getDestinationDetails('@item.DestinationId')"
+                         style="cursor:pointer;">
+
+                        <img class="card-img-top @(item.Status ? "" : "inactive-img")"
+                             src="@item.ImageUrl" alt="@item.CityCountry" />
+
+                        <div class="card-body py-4 px-3">
+                            <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
+                                <h4 class="text-secondary fw-medium">@item.CityCountry</h4>
+                                <span class="fs-1 fw-medium">@item.Price ₺</span>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-1">
+                                <img src="/public/assets/img/dest/navigation.svg" class="me-2" width="20" alt="navigation" />
+                                <span class="fs-0 fw-medium">@item.DayNight</span>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-users me-2 text-primary"></i>
+                                <span class="fs-0 fw-medium">@item.Capacity @CapacityText</span>
+                            </div>
+
+                            <!-- Durum etiketi -->
+                            <div>
+                                @if (item.Status)
+                                {
+                                    <span class="badge bg-success">@isActive</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">@notActive</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="destinationModal" tabindex="-1" aria-labelledby="destinationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="destinationModalLabel">@ModalTitle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@ButtonText"></button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" alt="destination" class="img-fluid rounded mb-3" style="max-height:250px;" />
+                    <h4 id="modalCity" class="text-secondary fw-bold mb-2"></h4>
+                    <p id="modalDesc" class="mb-1 text-muted"></p>
+                    <p class="fw-semibold mb-1"><span id="modalPrice"></span> ₺</p>
+                    <p id="modalCapacity" class="mb-3"></p>
+
+                    <!-- 🔹 Tur Açıklaması -->
+                    <div class="border-top pt-3">
+                        <h6 class="fw-bold mb-2">@await LanguageService.TranslateAsync("Tur Açıklaması", lang)</h6>
+                        <p id="modalDescription" class="text-secondary small"></p>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@ButtonText</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script>
+    async function getDestinationDetails(id) {
+        try {
+            const response = await fetch(`/Default/GetDestinationDetails?id=${id}`, {
+                credentials: 'include'
+            });
+
+            if (!response.ok) {
+                console.error("Detay alınamadı:", response.status);
+                return;
+            }
+
+            const data = await response.json();
+
+            document.getElementById('modalImage').src = data.imageUrl;
+            document.getElementById('modalCity').textContent = data.cityCountry;
+            document.getElementById('modalDesc').textContent = data.dayNight;
+            document.getElementById('modalPrice').textContent = data.price;
+
+            // ✅ Kontenjan çevirisini doğru Razor biçimiyle ekliyoruz
+            document.getElementById('modalCapacity').textContent = data.capacity ;
+
+            // 🔸 Tur açıklamasını ekle
+            document.getElementById('modalDescription').textContent =
+                data.description && data.description.trim() !== ""
+                    ? data.description
+                    : "@(await LanguageService.TranslateAsync("Bu tura ait açıklama bulunmamaktadır.", lang))";
+
+            const modal = new bootstrap.Modal(document.getElementById('destinationModal'));
+            modal.show();
+
+        } catch (error) {
+            console.error("Hata:", error);
+        }
+    }
+</script>
+

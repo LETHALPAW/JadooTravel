@@ -1,0 +1,107 @@
+﻿@model List<ResultPartnerDto>
+@inject JadooTravel.Services.LanguageService.LanguageService LanguageService
+@using Microsoft.AspNetCore.Http
+
+@*
+    _DefaultPartnersViewComponent
+*@
+
+@{
+
+    var lang = Context.Session.GetString("lang") ?? "tr";
+
+    var sectionTitle = await LanguageService.TranslateAsync("Partnerler & İş Ortaklarımız", lang);
+    var sectionSubtitle = await LanguageService.TranslateAsync("Bizi Tercih Eden Güvenilir Markalar", lang);
+    var country = await LanguageService.TranslateAsync("Ülke", lang);
+    var text = await LanguageService.TranslateAsync("Partner Firma", lang);
+    var text1 = await LanguageService.TranslateAsync("Tur Organizasyonu", lang);
+    var text2 = await LanguageService.TranslateAsync("Memnuniyet", lang);
+    
+
+}
+<section id="partners" class="py-7 bg-light">
+    <div class="container text-center mb-6">
+        <h5 class="text-secondary text-uppercase">@sectionTitle</h5>
+        <h2 class="fs-xl-9 fs-lg-7 fs-5 fw-bold">@sectionSubtitle</h2>
+       
+    </div>
+
+    <div class="container">
+        <!-- Partner Logoları -->
+        <div class="row row-cols-lg-5 row-cols-md-3 row-cols-2 flex-center mb-5">
+            @foreach (var partner in Model.Where(x => x.Status == true))
+            {
+                <div class="col">
+                    <div class="card shadow-hover mb-4" style="border-radius:10px;">
+                        <div class="card-body text-center">
+                            <img class="img-fluid"
+                                 src="@partner.LogoUrl"
+                                 alt="@partner.PartnerName"
+                                 title="@partner.PartnerName"
+                                 style="max-height:80px; object-fit:contain;" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Sayaçlar -->
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <i class="fas fa-globe-americas fa-3x text-dark"></i>
+                </div>
+                <h2 class="fw-bold text-dark display-4 counter" data-target="15">0</h2>
+                <p class="text-dark fw-semibold fs-4">@country</p>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <i class="fas fa-handshake fa-3x text-dark"></i>
+                </div>
+                <h2 class="fw-bold text-dark display-4 counter" data-target="120">0</h2>
+                <p class="text-dark fw-semibold fs-4">@text</p>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <i class="fas fa-bus fa-3x text-dark"></i>
+                </div>
+                <h2 class="fw-bold text-dark display-4 counter" data-target="350">0</h2>
+                <p class="text-dark fw-semibold fs-4">@text1</p>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <i class="fas fa-smile fa-3x text-dark"></i>
+                </div>
+                <h2 class="fw-bold text-dark display-4 counter" data-target="5000">0</h2>
+                <p class="text-dark fw-semibold fs-4">@text2</p>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            counter.innerText = '0';
+            const updateCounter = () => {
+                const target = +counter.getAttribute('data-target');
+                const current = +counter.innerText;
+                const increment = Math.ceil(target / 200); // hız
+                if (current < target) {
+                    counter.innerText = current + increment;
+                    setTimeout(updateCounter, 20);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCounter();
+        });
+    });
+</script>
+

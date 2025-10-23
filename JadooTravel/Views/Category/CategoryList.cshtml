@@ -1,0 +1,39 @@
+﻿@model List<ResultCategoryDto>
+@{
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<style>
+    /* Pasif kategorilerin resmi gri gözüksün */
+    .inactive-img {
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: all 0.3s ease;
+    }
+</style>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <img src="@item.IconUrl"
+                     class="card-img-top @(item.Status ? "" : "inactive-img")"
+                     alt="@item.CategoryName"
+                     style="object-fit:cover;" />
+
+                <div class="card-body">
+                    <h5 class="card-title">@item.CategoryName</h5>
+                    <p class="card-text">@item.Description</p>
+                </div>
+
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="/Category/UpdateCategory/@item.CategoryId" class="btn btn-success btn-sm">Güncelle</a>
+                    <a href="/Category/DeleteCategory/@item.CategoryId" class="btn btn-danger btn-sm">Sil</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<a href="/Category/CreateCategory" class="btn btn-info mt-3">Yeni Kategori Oluştur</a>

@@ -1,0 +1,60 @@
+﻿@using JadooTravel.Dtos.ReservationDtos
+@model List<ResultReservationDto>
+@{
+    ViewData["Title"] = "Rezervasyonlar";
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="card-header bg-light">
+        <h5 class="mb-0 fw-bold text-secondary">📌 Rezervasyon Listesi</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Ad Soyad</th>
+                        <th>Telefon</th>
+                        <th>Email</th>
+                        <th>Mesaj</th>
+                        <th>Tarih</th>
+                        <th class="text-center">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><strong>@item.FullName</strong></td>
+                                <td><span class="badge bg-light text-dark px-2">@item.PhoneNumber</span></td>
+                                <td>@item.Email</td>
+                                <td style="white-space: normal; max-width: 250px; word-wrap: break-word;">
+                                    <span class="text-muted">@item.ReservationMessage</span>
+                                </td>
+                                <td><span class="text-secondary">@item.Created.ToString("dd.MM.yyyy HH:mm")</span></td>
+                                <td class="text-center">
+                                    <a href="/Reservation/DeleteReservation/@item.ReservationId"
+                                       class="btn btn-sm btn-outline-danger"
+                                       onclick="return confirm('Bu rezervasyonu silmek istediğinize emin misiniz?');">
+                                        <i class="fas fa-trash-alt me-1"></i> Sil
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">
+                                Henüz kayıtlı rezervasyon bulunmamaktadır.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

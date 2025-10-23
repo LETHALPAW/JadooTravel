@@ -1,0 +1,53 @@
+﻿@model ResultUserDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+
+<div class="card shadow-sm mt-4">
+    <div class="row g-0">
+        <!-- Sol taraf: Profil Resmi -->
+        <div class="col-md-4 d-flex align-items-center justify-content-center p-4 bg-light">
+            <img src="@Model.ImageUrl"
+                 alt="@Model.FirstName"
+                 class="img-fluid rounded-circle shadow-sm"
+                 style="width: 200px; height: 200px; object-fit: cover;" />
+        </div>
+
+        <!-- Sağ taraf: Kullanıcı Bilgileri -->
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Kullanıcı Bilgileri</h5>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Ad</label>
+                    <input type="text" value="@Model.FirstName" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Soyad</label>
+                    <input type="text" value="@Model.LastName" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Kullanıcı Adı</label>
+                    <input type="text" value="@Model.UserName" class="form-control" readonly />
+                </div>
+
+                <!-- Eğer başka bilgiler varsa buraya eklenebilir -->
+                <div class="mt-4 text-end">
+                    <a asp-action="UpdateUser" asp-controller="User" asp-route-id="@Model.UserId"
+                       class="btn btn-outline-info me-2">
+                        Bilgileri Güncelle
+                    </a>
+
+                    <a asp-action="UpdatePassword" asp-controller="User" asp-route-userId="@Model.UserId"
+                       class="btn btn-outline-secondary">
+                        Şifreyi Değiştir
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

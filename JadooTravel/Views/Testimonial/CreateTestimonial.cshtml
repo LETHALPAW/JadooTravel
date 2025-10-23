@@ -1,0 +1,43 @@
+﻿@model CreateTestimonialDto
+@{
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">Yeni yorum & Görüş Ekle</h5>
+
+        <form asp-action="CreateTestimonial" asp-controller="Testimonial" method="post">
+            <div class="mb-3">
+                <label asp-for="FullName" class="form-label">Ad Soyad</label>
+                <input type="text" asp-for="FullName" class="form-control" placeholder="Ad Soyad giriniz" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Comment" class="form-label">Yorum</label>
+                <textarea asp-for="Comment" class="form-control" rows="3" placeholder="Yorum giriniz"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ImageURL" class="form-label">Resim URL</label>
+                <input type="text" asp-for="ImageURL" class="form-control" placeholder="/images/user.png" />
+            </div>
+
+            <!-- Ülke Seçimi -->           
+            <div class="mb-3">
+                <label asp-for="Country" class="form-label">Şehir</label>
+                <input type="text" asp-for="Country" class="form-control" placeholder="Ülke giriniz" />
+            </div>
+
+
+            <!-- Şehir Seçimi -->
+            <div class="mb-3">
+                <label asp-for="City" class="form-label">Şehir</label>
+                <input type="text" asp-for="City" class="form-control" placeholder="Şehir giriniz" />
+            </div>
+
+            <button type="submit" class="btn btn-success">Kaydet</button>
+            <a asp-action="TestimonialList" class="btn btn-secondary">İptal</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,144 @@
+﻿
+@*
+   _AdminSideBarViewComponentPartial
+*@
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div>
+      
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+            <ul id="sidebarnav">
+                <li class="nav-small-cap">
+                    <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
+                    
+                </li>              
+                <!-- ---------------------------------- -->
+                <!-- Dashboard -->
+                <!-- ---------------------------------- -->
+                <li class="sidebar-item">
+                    <a href="/Admin/Index" class="sidebar-link primary-hover-bg justify-content-between" aria-expanded="false">
+                        <div class="d-flex align-items-center gap-6">
+                            <span class="d-flex">
+                                <iconify-icon icon="solar:screencast-2-line-duotone" class=""></iconify-icon>
+                            </span>
+                            <span class="hide-menu">Anasayfa</span>
+                        </div>                       
+                    </a>
+                </li>             
+                <li class="sidebar-item">
+                    <a asp-action="DestinationList" asp-controller="Destination" class="sidebar-link primary-hover-bg justify-content-between" aria-expanded="false">
+                        <div class="d-flex align-items-center gap-6">
+                            <span class="d-flex">
+                                <iconify-icon icon="solar:widget-4-line-duotone"></iconify-icon>
+                            </span>
+                            <span class="hide-menu">Tur Rotaları</span>
+                        </div>                       
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a asp-action="CategoryList" asp-controller="Category" class="sidebar-link primary-hover-bg justify-content-between" aria-expanded="false">
+                        <div class="d-flex align-items-center gap-6">
+                            <span class="d-flex">
+                                <iconify-icon icon="solar:quit-full-screen-square-line-duotone" class=""></iconify-icon>
+                            </span>
+                            <span class="hide-menu">Hizmetler</span>
+                        </div>                       
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a asp-action="TestimonialList" asp-controller="Testimonial" class="sidebar-link primary-hover-bg justify-content-between" aria-expanded="false">
+                        <div class="d-flex align-items-center gap-6">
+                            <span class="d-flex">
+                                <iconify-icon icon="solar:chat-round-line-line-duotone" class=""></iconify-icon>
+                            </span>
+                            <span class="hide-menu">Referanslar</span>
+                        </div>                       
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a asp-action="Index" asp-controller="Reservation" class="sidebar-link primary-hover-bg justify-content-between" aria-expanded="false">
+                        <div class="d-flex align-items-center gap-6">
+                            <span class="d-flex">
+                                <iconify-icon icon="solar:document-text-line-duotone" class=""></iconify-icon>
+                            </span>
+                            <span class="hide-menu">Rezervasyonlar</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a asp-action="Index" asp-controller="Feature" class="sidebar-link primary-hover-bg justify-content-between" aria-expanded="false">
+                        <div class="d-flex align-items-center gap-6">
+                            <span class="d-flex">
+                                <iconify-icon icon="solar:passport-line-duotone" class=""></iconify-icon>
+                            </span>
+                            <span class="hide-menu">Öne Çıkan Alan</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a asp-action ="TripPlanList" asp-controller="TripPlan" class="sidebar-link primary-hover-bg justify-content-between" aria-expanded="false">
+                        <div class="d-flex align-items-center gap-6">
+                            <span class="d-flex">
+                                <iconify-icon icon="solar:airbuds-case-minimalistic-line-duotone" class=""></iconify-icon>
+                            </span>
+                            <span class="hide-menu">Planlama </span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <span class="sidebar-divider lg"></span>
+                </li>
+                <li class="nav-small-cap">
+                    <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
+                    <span class="hide-menu">Kullanıcı İşlemleri</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link primary-hover-bg" href="/User/Index" aria-expanded="false">
+                        <iconify-icon icon="solar:shield-user-line-duotone" class=""></iconify-icon>
+
+                        <span class="hide-menu">Profil Bilgileri</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link primary-hover-bg justify-content-between"
+                       href="/User/UpdateUser" aria-expanded="false">
+                        <div class="d-flex align-items-center gap-6">
+                            <span class="d-flex">
+                                <iconify-icon icon="solar:settings-line-duotone" class=""></iconify-icon>
+                            </span>
+                            <span class="hide-menu">Profili Düzenle</span>
+                        </div>                       
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link primary-hover-bg justify-content-between"
+                       href="/User/UpdatePassword" aria-expanded="false">
+                        <div class="d-flex align-items-center gap-6">
+                            <span class="d-flex">
+                                <iconify-icon icon="solar:settings-line-duotone" class=""></iconify-icon>
+                            </span>
+                            <span class="hide-menu">Şifreyi Değiştir</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <span class="sidebar-divider lg"></span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link primary-hover-bg justify-content-between"
+                       href="/Default/Index" aria-expanded="false">
+                        <div class="d-flex align-items-center gap-6">
+                            <span class="d-flex">
+                                <iconify-icon icon="solar:logout-2-line-duotone"></iconify-icon>
+                            </span>
+                            <span class="hide-menu">LogOut</span>
+                        </div>
+                    </a>
+                </li>
+
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>

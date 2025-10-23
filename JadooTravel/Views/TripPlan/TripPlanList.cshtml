@@ -1,0 +1,35 @@
+﻿@model List<ResultTripPlanDto>
+@{
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<div class="row">
+    @foreach (var trip in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <!-- Icon -->
+                <div class="text-center mt-3">
+                    <img src="@trip.ImageUrl"
+                         alt="@trip.Title"
+                         style="width:60px; height:60px; object-fit:contain;" />
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">@trip.Title</h5>
+                    <p class="card-text text-muted">@trip.Description</p>
+                </div>
+
+                <!-- Card Footer (isteğe bağlı) -->
+                <div class="card-footer text-center">
+                    <a href="/TripPlan/UpdateTripPlan/@trip.TripPlanId" class="btn btn-sm btn-primary">Güncelle</a>
+                    <a href="/TripPlan/DeleteTripPlan/@trip.TripPlanId" class="btn btn-sm btn-danger">Sil</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<a href="/TripPlan/CreateTripPlan" class="btn btn-info mt-3">Yeni Plan Ekle</a>
+

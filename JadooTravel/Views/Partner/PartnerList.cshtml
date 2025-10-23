@@ -1,0 +1,53 @@
+﻿@model List<ResultPartnerDto>
+@{
+    ViewData["Title"] = "PartnerList";
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<div class="row">
+    @foreach (var partner in Model)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <img src="@partner.LogoUrl"
+                     class="card-img-top @(partner.Status ? "" : "grayscale")"
+                     alt="@partner.PartnerName"
+                     style="object-fit:contain; height:150px; padding:10px;" />
+
+                <div class="card-body text-center">
+                    <h5 class="card-title d-flex justify-content-between align-items-center">
+                        @partner.PartnerName
+                        @if (partner.Status)
+                        {
+                            <span class="text-success d-flex align-items-center">
+                                <iconify-icon icon="solar:check-circle-bold" class="me-1"></iconify-icon> Aktif
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="text-secondary d-flex align-items-center">
+                                <iconify-icon icon="solar:close-circle-bold" class="me-1"></iconify-icon> Pasif
+                            </span>
+                        }
+
+
+                    </h5>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="/Partner/UpdatePartner/@partner.PartnerId" class="btn btn-success btn-sm">Güncelle</a>
+                    <a href="/Partner/DeletePartner/@partner.PartnerId" class="btn btn-danger btn-sm">Sil</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<a href="/Partner/CreatePartner" class="btn btn-info mt-3">Yeni Partner Ekle</a>
+
+<style>
+    .grayscale {
+        filter: grayscale(100%);
+    }
+</style>
+
+

@@ -1,0 +1,63 @@
+﻿@{
+    Layout = null;
+    var currentLang = Context.Session.GetString("lang") ?? "tr";
+}
+
+<!DOCTYPE html>
+<html lang="@currentLang" dir="ltr">
+
+@await Component.InvokeAsync("_DefaultHeadComponentPartial");
+<body>
+
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+
+        @await Component.InvokeAsync("_DefaultNavbarComponentPartial");
+
+
+        @await Component.InvokeAsync("_DefaultFeatureComponentPartial");
+
+        <!-- <section> begin ============================-->
+        @await Component.InvokeAsync("_DefaultCategoryComponentPartial");
+
+        <!-- <section> close ============================-->
+        <!-- <section> begin ============================-->
+        @await Component.InvokeAsync("_DefaultDestinationComponentPartial");
+
+        <!-- <section> close ============================-->
+        <!-- <section> begin ============================-->
+        @await Component.InvokeAsync("_DefaultBookingStepsComponentPartial");
+
+        <!-- <section> close ============================-->
+        <!-- <section> begin ============================-->
+        @await Component.InvokeAsync("_DefaultTestimonialComponentPartial");
+
+        <!-- <section> close ============================-->
+        @await Component.InvokeAsync("_DefaultPartnersViewComponentPartial");
+
+
+        <!-- ============================================-->
+        <!-- <section> begin ============================-->
+        @await Component.InvokeAsync("_DefaultAIViewComponentPartial")
+
+        <!-- <section> close ============================-->
+        <!-- <section> begin ============================-->
+        @await Component.InvokeAsync("_DefaultFooterViewComponentPartial");
+
+        <!-- <section> close ============================-->
+
+        <div class="py-5 text-center">
+            <p class="mb-0 text-secondary fs--1 fw-medium">All rights </p>
+        </div>
+    </main>
+
+    <!--    End of Main Content-->
+    <!--    JavaScripts-->
+    @await Component.InvokeAsync("_DefaultScriptsComponentPartial");
+
+
+
+</body>
+
+</html>

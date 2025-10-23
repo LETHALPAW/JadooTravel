@@ -1,0 +1,68 @@
+﻿@model GetDestinationByIdDto
+@{
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">Tur Rotası Güncelleme Formu</h5>
+
+        <form asp-action="UpdateDestination" asp-controller="Destination" method="post">
+            <!-- Hidden Id -->
+            <input type="hidden" asp-for="DestinationId" />
+
+            <!-- Şehir ve Ülke -->
+            <div class="mb-3">
+                <label asp-for="CityCountry" class="form-label">Şehir - Ülke</label>
+                <input type="text" asp-for="CityCountry" class="form-control" placeholder="Örn: Paris, Fransa" />
+                <span asp-validation-for="CityCountry" class="text-danger"></span>
+            </div>
+
+            <!-- Gün / Gece -->
+            <div class="mb-3">
+                <label asp-for="DayNight" class="form-label">Gün / Gece</label>
+                <input type="text" asp-for="DayNight" class="form-control" placeholder="Örn: 3 Gün 2 Gece" />
+                <span asp-validation-for="DayNight" class="text-danger"></span>
+            </div>
+
+            <!-- Fiyat -->
+            <div class="mb-3">
+                <label asp-for="Price" class="form-label">Fiyat</label>
+                <input type="text" asp-for="Price" class="form-control" placeholder="Örn: 1200 ₺" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <!-- Kapasite -->
+            <div class="mb-3">
+                <label asp-for="Capacity" class="form-label">Kapasite</label>
+                <input type="text" asp-for="Capacity" class="form-control" placeholder="Örn: 30 Kişi" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+
+            <!-- Açıklama -->
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Açıklama</label>
+                <textarea asp-for="Description" class="form-control" rows="3" placeholder="Tur açıklamasını giriniz"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <!-- Fotoğraf URL -->
+            <div class="mb-3">
+                <label asp-for="ImageUrl" class="form-label">Fotoğraf URL</label>
+                <input type="text" asp-for="ImageUrl" class="form-control" placeholder="Örn: /images/destination.png" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+
+            <!-- Status -->
+            <div class="form-check mb-3">
+                <input type="checkbox" asp-for="Status" class="form-check-input" id="statusCheck" />
+                <label class="form-check-label" for="statusCheck">Aktif mi?</label>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+            <a asp-action="DestinationList" asp-controller="Destination" class="btn btn-danger">İptal</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@model GetTripPlanByIdDto
+@{
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<div class="card shadow-sm mt-4">
+    <div class="row g-0">
+        <div class="col-md-4 d-flex align-items-center justify-content-center p-3">
+            <img id="previewImg"
+                 src="@Model.ImageUrl"
+                 alt="@Model.Title"
+                 class="img-fluid rounded"
+                 style="max-height:250px; object-fit:cover;" />
+        </div>
+
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-3">Trip Plan Güncelle</h5>
+
+                <form asp-action="UpdateTripPlan" asp-controller="TripPlan" method="post">
+                    <input type="hidden" asp-for="TripPlanId" />
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label">Başlık</label>
+                        <input type="text" asp-for="Title" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Açıklama</label>
+                        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ImageUrl" class="form-label">Resim URL</label>
+                        <input type="text" asp-for="ImageUrl" class="form-control"
+                               oninput="document.getElementById('previewImg').src = this.value" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                    <a asp-action="TripPlanList" class="btn btn-secondary">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

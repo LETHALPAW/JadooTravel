@@ -1,0 +1,40 @@
+﻿@model CreatePartnerDto
+@{
+    ViewData["Title"] = "CreatePartner";
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">Yeni Sponsor Ekleme Formu</h5>
+
+        <form method="post">
+            <!-- Partner Adı -->
+            <div class="mb-3">
+                <label asp-for="PartnerName" class="form-label">Partner Adı</label>
+                <input type="text" asp-for="PartnerName" class="form-control" placeholder="Örn: Türk Hava Yolları" />
+                <span asp-validation-for="PartnerName" class="text-danger"></span>
+            </div>
+
+            <!-- Logo URL -->
+            <div class="mb-3">
+                <label asp-for="LogoUrl" class="form-label">Logo URL</label>
+                <input type="text" asp-for="LogoUrl" class="form-control" placeholder="Örn: /images/logos/thyl.png" />
+                <span asp-validation-for="LogoUrl" class="text-danger"></span>
+            </div>
+
+            <!-- Status -->
+            <div class="form-check mb-3">
+                <input type="checkbox" asp-for="Status" class="form-check-input" id="statusCheck" />
+                <label class="form-check-label" for="statusCheck">Aktif mi?</label>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-success">Partner Ekle</button>
+            <a asp-action="PartnerList" asp-controller="Partner" class="btn btn-danger">İptal</a>
+        </form>
+    </div>
+</div>
+
+
