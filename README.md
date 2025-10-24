@@ -1,4 +1,4 @@
-<img width="1097" height="485" alt="13" src="https://github.com/user-attachments/assets/69f641d9-afbd-4815-950e-ee39af4eebd9" />🌍 Jadoo Travel Project
+
 ASP.NET Core MVC 6.0 tabanlı, çok dilli (TR / EN / FR / ES) bir seyahat & tur rezervasyon platformu.
 Kullanıcılar yapay zeka destekli rota önerileri alabilir, turlar hakkında bilgi edinebilir ve rezervasyon oluşturabilir.
 
