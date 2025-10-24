@@ -27,13 +27,13 @@ Kullanıcılar yapay zeka destekli rota önerileri alabilir, turlar hakkında bi
 
 🛠️ Kullanılan Teknolojiler
 
-Katman	Teknoloji
-Backend	ASP.NET Core MVC 6.0, C#
-Database	MongoDB (NoSQL)
-Frontend	HTML, CSS, Bootstrap 5
-Tools	AutoMapper, Dependency Injection
-AI Service	OpenAI GPT API
-Custom Service	LanguageService (Dinamik Çoklu Dil Çevirisi)
+-Katman	Teknoloji
+-Backend	ASP.NET Core MVC 6.0, C#
+-Database	MongoDB (NoSQL)
+-Frontend	HTML, CSS, Bootstrap 5
+-Tools	AutoMapper, Dependency Injection
+-AI Service	OpenAI GPT API
+-Custom Service	LanguageService (Dinamik Çoklu Dil Çevirisi)
 
 <img width="1913" height="704" alt="1" src="https://github.com/user-attachments/assets/4c35c53b-0d05-4f52-b244-2610841ba236" />
 <img width="1897" height="577" alt="2" src="https://github.com/user-attachments/assets/7bb1d66f-7a34-4d9e-9fa3-d7658619c301" />
