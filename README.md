@@ -3,6 +3,7 @@ ASP.NET Core MVC 6.0 tabanlı, çok dilli (TR / EN / FR / ES) bir seyahat & tur 
 Kullanıcılar yapay zeka destekli rota önerileri alabilir, turlar hakkında bilgi edinebilir ve rezervasyon oluşturabilir.
 
 🚀 Özellikler
+
 🌐 Çoklu Dil Desteği (TR / EN / FR / ES)
 → Özel LanguageService ile OpenAI API üzerinden dinamik çeviri
 🧠 Yapay Zeka Rota Önerisi
