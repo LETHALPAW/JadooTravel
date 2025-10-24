@@ -26,6 +26,7 @@ Kullanıcılar yapay zeka destekli rota önerileri alabilir, turlar hakkında bi
 → Temiz, sürdürülebilir ve genişletilebilir kod mimarisi
 
 🛠️ Kullanılan Teknolojiler
+
 Katman	Teknoloji
 Backend	ASP.NET Core MVC 6.0, C#
 Database	MongoDB (NoSQL)
