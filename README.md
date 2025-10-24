@@ -6,18 +6,25 @@ Kullanıcılar yapay zeka destekli rota önerileri alabilir, turlar hakkında bi
 
 🌐 Çoklu Dil Desteği (TR / EN / FR / ES)
 → Özel LanguageService ile OpenAI API üzerinden dinamik çeviri
+
 🧠 Yapay Zeka Rota Önerisi
 → OpenAI GPT API entegrasyonu ile akıllı tur tavsiyeleri
+
 📅 Rezervasyon Sistemi
 → MongoDB (NoSQL) üzerinde rezervasyon kayıtları
+
 🏞️ Dinamik Tur Kartları
 → Görseller, açıklamalar, fiyatlar, aktif/pasif durumuna göre dinamik görünüm
+
 🧱 Admin Paneli
 → ASP.NET MVC katmanlı yapı ve CRUD işlemleri
+
 🧩 ViewComponent & Partial View
 → Yeniden kullanılabilir modüler yapı
+
 ⚙️ Dependency Injection & AutoMapper
 → Temiz, sürdürülebilir ve genişletilebilir kod mimarisi
+
 🛠️ Kullanılan Teknolojiler
 Katman	Teknoloji
 Backend	ASP.NET Core MVC 6.0, C#
@@ -26,6 +33,7 @@ Frontend	HTML, CSS, Bootstrap 5
 Tools	AutoMapper, Dependency Injection
 AI Service	OpenAI GPT API
 Custom Service	LanguageService (Dinamik Çoklu Dil Çevirisi)
+
 <img width="1913" height="704" alt="1" src="https://github.com/user-attachments/assets/4c35c53b-0d05-4f52-b244-2610841ba236" />
 <img width="1897" height="577" alt="2" src="https://github.com/user-attachments/assets/7bb1d66f-7a34-4d9e-9fa3-d7658619c301" />
 <img width="1879" height="586" alt="3" src="https://github.com/user-attachments/assets/f0823428-1b6e-4513-9c6a-b0ae7e330dee" />
